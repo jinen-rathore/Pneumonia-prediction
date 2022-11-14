@@ -27,12 +27,12 @@ app.add_middleware(
 
 templates = Jinja2Templates(directory="templates/")
 
-MODEL = tf.keras.models.load_model("model_vgg16.h5")
+MODEL = tf.keras.models.load_model("./models/trained_model.h5")
 
 CLASS_NAMES = ["Normal", "Pneumonia"]
 
 def model_predict(img_path, MODEL):
-    img = tf.keras.utils.load_img(img_path, target_size = (224,224))
+    img = tf.keras.utils.load_img(img_path, target_size = (64,64,3))
     img = tf.keras.utils.img_to_array(img)
     img = np.expand_dims(img, axis=0)
     img_data = preprocess_input(img)
